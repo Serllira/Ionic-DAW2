@@ -17,13 +17,17 @@ import {SignupPage} from "../pages/signup/signup";
 import { environment } from '../environments/environment';
 
 import {AuthService} from "../services/auth.service";
+import {RoomPage} from "../pages/room/room";
+import {AddRoomPage} from "../pages/add-room/add-room";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    RoomPage,
+    AddRoomPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import {AuthService} from "../services/auth.service";
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    RoomPage,
+    AddRoomPage
   ],
   providers: [
     StatusBar,

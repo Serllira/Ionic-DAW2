@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {HomePage} from "../home/home";
 import { AuthService } from '../../services/auth.service';
+import {RoomPage} from "../room/room";
 
 @IonicPage()
 @Component({
@@ -36,12 +37,13 @@ export class SignupPage {
       password: data.password
     };
     let datos = {
+
       email: data.email,
       nick: data.nick,
       admin: false
     };
     this.auth.signUp(credentials).then(
-      () => this.navCtrl.setRoot(HomePage),
+      () => this.navCtrl.setRoot(RoomPage),
 
       error => this.signupError = error.message
     );

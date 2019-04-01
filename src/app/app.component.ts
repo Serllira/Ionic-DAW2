@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 import {AuthService} from "../services/auth.service";
 import {HomePage} from "../pages/home/home";
+import {RoomPage} from "../pages/room/room";
 
 @Component({
   templateUrl: 'app.html'
@@ -31,7 +32,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'Rooms', component: RoomPage, icon: 'home' },
     ];
   }
 
@@ -44,7 +45,7 @@ export class MyApp {
       .subscribe(
         user => {
           if (user) {
-            this.rootPage = HomePage;
+            this.rootPage = RoomPage;
           } else {
             this.rootPage = LoginPage;
           }

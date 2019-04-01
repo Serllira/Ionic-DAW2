@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import {HomePage} from "../home/home";
 import {SignupPage} from "../signup/signup";
+import {RoomPage} from "../room/room";
 
 /**
  * Generated class for the LoginPage page.
@@ -49,7 +50,7 @@ export class LoginPage {
     };
     this.auth.signInWithEmail(credentials)
       .then(
-        () => this.navCtrl.setRoot(HomePage),
+        () => this.navCtrl.setRoot(RoomPage),
         error => this.loginError = error.message
       );
   }
