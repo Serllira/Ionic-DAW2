@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {Injectable} from '@angular/core';
+import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { AngularFireDatabase } from '@angular/fire/database';
-import AuthProvider = firebase.auth.AuthProvider;
+import {AngularFireDatabase} from '@angular/fire/database';
+
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,6 @@ export class AuthService {
   }
 
   signInWithEmail(credentials) {
-    console.log('Sign in with email');
     return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
       credentials.password);
   }
@@ -39,21 +38,26 @@ export class AuthService {
   signup2(datos) {
     let key = this.afDB.list('/users/').push(datos).key;
     datos.id = key;
-    this.afDB.database.ref('users/'+datos.id).set(datos);
+    this.afDB.database.ref('users/' + datos.id).set(datos);
   }
 
-   getNick() {
-  //   let user = firebase.auth().currentUser;
-  //   if(user !==null){
-  //     firebase.database().ref().child("users").on('value', function(snapshot) {
-  //       snapshot.forEach(function(child) {
-  //         var datas = child.val();
-  //         //var firstname=child.val().firstname;
-  //         //var lastname=child.val().lastname;
-  //         var nick=child.val().nick;
-  //       });
-  //     });
-  //
-  //   }
-   }
+  getUserData(userData) {
+    let user_data = [];
+    firebase.database().ref().child("users").on('value', (snapshot) => {
+      let result = snapshot.val();
+      for (let k in result) {
+        if (userData === result[k].email) {
+          user_data.push({
+            id: k,
+            email: result[k].email,
+            nick: result[k].nick,
+            admin: result[k].admin
+          });
+        }
+
+      }
+    });
+    return user_data;
+  }
+
 }
